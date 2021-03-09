@@ -14,6 +14,17 @@ apiServer.get("/nome", (req, res) =>{
     res.send("ciao, il nome del server è: NODEPOGLIANI");
 });
 
+apiServer.get("/somma",function(req, res){
+    console.log("Richiesta: ", req.query);
+    if(req.query.a && req.query.b){
+        var ris = req.query.a + req.query.b;
+        console.log("Risultato: ", ris);
+        res.send("{ \"risultato\" : " + ris + "}");
+    }else{
+        res.send("Parametri non corretti");
+    }
+});
+
 apiServer.get("/", function(req, res){
     res.send("sei in home");
-})
+});
