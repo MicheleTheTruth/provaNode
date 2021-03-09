@@ -17,7 +17,7 @@ apiServer.get("/nome", (req, res) =>{
 apiServer.get("/somma",function(req, res){
     console.log("Richiesta: ", req.query);
     if(req.query.a && req.query.b){
-        var ris = req.query.a + req.query.b;
+        var ris = req.query.a*1 + req.query.b*1;
         console.log("Risultato: ", ris);
         res.send("{ \"risultato\" : " + ris + "}");
     }else{
