@@ -45,7 +45,7 @@ apiServer.get("/loginGET" , (req, res) => {
 // riceve in ingresso username e password e invia un messaggio "benvenuto [username]"
 apiServer.post("/loginPOST" , (req, res) => {
     const {user, pwd} = req.body;
-    console.log("Richiesta: ", req.body.user);
+    console.log("Richiesta: ", req.body);
     res.send({
         user : req.body.user
     });
