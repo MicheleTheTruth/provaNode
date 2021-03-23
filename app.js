@@ -1,10 +1,12 @@
 var express = require("express");
+var bodyParser = require('body-parser');
 var cors = require("cors");
 var apiServer = express();
 
 var port = 3000;
 
 apiServer.use(cors());
+apiServer.use(bodyParser.urlencoded({ extended: true }));
 
 apiServer.listen(port, () => {
     console.log("server running on port ", port);
@@ -42,10 +44,10 @@ apiServer.get("/loginGET" , (req, res) => {
 
 // riceve in ingresso username e password e invia un messaggio "benvenuto [username]"
 apiServer.post("/loginPOST" , (req, res) => {
-    var obj = req.query.user;
-    console.log("Richiesta: ", req.query);
+    const {user, pwd} = req.body;
+    console.log("Richiesta: ", req.body.user);
     res.send({
-        user : req.query.user
+        user : req.body.user
     });
 }); 
 
