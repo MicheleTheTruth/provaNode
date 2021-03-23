@@ -1,5 +1,86 @@
 <html>
-    <body>
-        <h1>ciao sono una risorsa statica</h1>
+    <body id="body">
+        <h1>Esercizio Node</h1><br>
+
+        <input id="user" type="text"><br>  
+        <input id="pwd" type="password"><br>
+
+        <span id="risultato"></span><br>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script>
+            var addBtn = function(){
+                var btn = document.createElement("button");
+                btn.innerHTML = "Richiesta GET";
+
+                document.getElementById("body").append(btn);
+
+                btn.addEventListener("click", loginGET);
+            }
+            
+            var loginGET = function(){
+                 $.ajax({
+                    //url : "http://ec2-18-198-202-0.eu-central-1.compute.amazonaws.com:3000/somma", 
+                    url : "http://127.0.0.1:3000/loginGET",
+                    type : "get",
+                    crossDomain: true,
+                    headers: {
+                        "accept": "application/json",
+                        "Access-Control-Allow-Origin":"*"
+                    },
+                    data : {
+                        user : $("#user").val(),
+                        password : $("#pwd").val()
+                    },
+                    success : function(res){
+                        console.log("Successo: ", res);
+                        document.getElementById("risultato").innerHTML = "BENVENUTO CON GET " + res.user
+                    }, 
+                    error : function(res){
+                        console.log("Errore: ", res);
+                    } 
+                });
+            }
+            
+            document.addEventListener("DOMContentLoaded", addBtn);
+        </script>    
+        
+        
+        <script>
+            var addBtn = function(){
+                var btn = document.createElement("button");
+                btn.innerHTML = "Richiesta POST";
+
+                document.getElementById("body").append(btn);
+
+                btn.addEventListener("click", loginPOST);
+            }
+            
+            var loginPOST = function(){
+                $.ajax({
+                    //url : "http://ec2-18-198-202-0.eu-central-1.compute.amazonaws.com:3000/somma", 
+                    url : "http://127.0.0.1:3000/loginPOST",
+                    type : "post",
+                    crossDomain: true,
+                    headers: {
+                        "accept": "application/json",
+                        "Access-Control-Allow-Origin":"*"
+                    },
+                    data : {
+                        user : $("#user").val(),
+                        password : $("#pwd").val()
+                    },
+                    success : function(res){
+                        console.log("Successo: ", res);
+                        document.getElementById("risultato").innerHTML = "BENVENUTO CON POST " + res.user
+                    }, 
+                    error : function(res){
+                        console.log("Errore: ", res);
+                    } 
+                });
+            }
+            
+            document.addEventListener("DOMContentLoaded", addBtn);
+        </script> 
     </body>
 </html>
