@@ -17,9 +17,48 @@
                 btn.addEventListener("click", loginGET);
             }
             
+            var sendVoti = function(){
+                 $.ajax({
+                    url : "http://ec2-35-156-59-45.eu-central-1.compute.amazonaws.com/voti",
+                    type : "get",
+                    crossDomain: true,
+                    headers: {
+                        "accept": "application/json",
+                        "Access-Control-Allow-Origin":"*"
+                    },
+                    data : {
+                        voto1 : 5,
+                        voto2 : 8,
+                        voto3 : 9,
+                        voto4 : 10 
+                    },
+                    success : function(res){
+                        console.log("Successo: ", res);
+                        document.getElementById("risultato").innerHTML = "VOTI " + res.arrV.voto1 +" "+ res.arrV.voto2 +" "+ res.arrV.voto3 +" "+ res.arrV.voto4
+                    }, 
+                    error : function(res){
+                        console.log("Errore: ", res);
+                    } 
+                });
+            }
+            
+            document.addEventListener("DOMContentLoaded", addBtn);
+
+        </script>
+        
+        <!--
+        <script>
+            var addBtn = function(){
+                var btn = document.createElement("button");
+                btn.innerHTML = "Richiesta GET";
+
+                document.getElementById("body").append(btn);
+
+                btn.addEventListener("click", loginGET);
+            }
+            
             var loginGET = function(){
                  $.ajax({
-                    //url : "http://ec2-18-198-202-0.eu-central-1.compute.amazonaws.com:3000/somma", 
                     url : "http://127.0.0.1:3000/loginGET",
                     type : "get",
                     crossDomain: true,
@@ -43,8 +82,8 @@
             
             document.addEventListener("DOMContentLoaded", addBtn);
         </script>    
-        
-        
+        -->
+        <!--
         <script>
             var addBtn = function(){
                 var btn = document.createElement("button");
@@ -80,6 +119,7 @@
             }
             
             document.addEventListener("DOMContentLoaded", addBtn);
-        </script> 
+        </script>
+    --> 
     </body>
 </html>

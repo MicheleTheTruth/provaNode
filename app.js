@@ -51,6 +51,14 @@ apiServer.post("/loginPOST" , (req, res) => {
     });
 }); 
 
+apiServer.get("/voti" , (req, res) => {
+    var arr = [req.query.voto1, req.query.voto2, req.query.voto3, req.query.voto4];
+    var obj = req.query.user;
+    console.log("Richiesta: ", req.query);
+    res.send({
+        arrV : arr
+    });
+}); 
 /*
 sviluppare una pagina html con un div e duie pulsanti.
 Premendo sul pulsante "post" invierete una post con username e password e visualizzerete nella div il messaggio inviato dal server
